@@ -7,9 +7,13 @@ public class leet1 {
         for (int i = 0; i < nums.length; i++) {
             int need = target - nums[i];
             if (pairs.containsKey(need)) {
-                int[] pair = {pairs.get(need), i}
+                int[] pair = {pairs.get(need), i};
                 return pair;
             }
+            pairs.put(nums[i], i);
         }
+
+        int[] pair = {-1, -1};
+        return pair;
     }
 }
