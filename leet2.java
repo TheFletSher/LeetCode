@@ -1,5 +1,19 @@
 public class leet2 {
-    public class ListNode {
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(1, new ListNode(2, new ListNode(3)));
+        ListNode l2 = new ListNode(4, new ListNode(5, new ListNode(6)));
+
+        int num1 = 0, exp = 0;
+        ListNode curr = l1;
+        while (curr != null) {
+            num1 += curr.val * Math.pow(10, exp++);
+            curr = curr.next;
+        }
+
+        System.out.println(num1);
+    }
+
+    public static class ListNode {
         int val;
         ListNode next;
         ListNode() {}
@@ -11,25 +25,27 @@ public class leet2 {
         int num1 = 0, num2 = 0, exp = 0;
 
         ListNode curr = l1;
-        while (l1.next != null) {
-            num1 += l1.val * Math.pow(10, exp++);
-            curr = l1.next;
+        while (curr != null) {
+            num1 += curr.val * Math.pow(10, exp++);
+            curr = curr.next;
         }
 
         exp = 0;
         curr = l2;
-        while (l2.next != null) {
-            num2 += l2.val * Math.pow(10, exp++);
-            curr = l2.next;
+        while (curr != null) {
+            num2 += curr.val * Math.pow(10, exp++);
+            curr = curr.next;
         }
-
-        int[] result = new int[exp];
 
         exp = 0;
         int total = num1 + num2;
+        ListNode result = new ListNode(total % 10);
+        total /= 10;
+        curr = result;
         while (total > 0) {
-            result[exp++] = total % 10;
+            curr.next = new ListNode(total % 10);
             total /= 10;
+            curr = result.next;
         }
 
         return result;
