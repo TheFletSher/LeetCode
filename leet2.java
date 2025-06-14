@@ -1,4 +1,12 @@
 public class leet2 {
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int num1 = 0, num2 = 0, exp = 0;
         for (int num : l1) {
