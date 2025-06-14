@@ -9,13 +9,18 @@ public class leet2 {
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int num1 = 0, num2 = 0, exp = 0;
-        for (int num : l1) {
-            num1 += num * Math.pow(10, exp++);
+
+        ListNode curr = l1;
+        while (l1.next != null) {
+            num1 += l1.val * Math.pow(10, exp++);
+            curr = l1.next;
         }
 
         exp = 0;
-        for (int num : l2) {
-            num2 += num * Math.pow(10, exp++);
+        curr = l2;
+        while (l2.next != null) {
+            num2 += l2.val * Math.pow(10, exp++);
+            curr = l2.next;
         }
 
         int[] result = new int[exp];
