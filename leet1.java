@@ -1,18 +1,15 @@
-import java.util.Arrays;
+import java.util.HashMap;
 
 public class leet1 {
     public int[] twoSum(int[] nums, int target) {
-        for (int i = 0; i < nums.length - 1; i++) {
+        HashMap<Integer, Integer> pairs = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
             int need = target - nums[i];
-            for (int j = i + 1; j < nums.length; j++) {
-                if (nums[j] == need) {
-                    int[] pair = {i, j};
-                    return pair;
-                }
+            if (pairs.containsKey(need)) {
+                int[] pair = {pairs.get(need), i}
+                return pair;
             }
         }
-
-        int[] pair = {-1, -1};
-        return pair;
     }
 }
