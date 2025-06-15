@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class leet2 {
     public static void main(String[] args) {
@@ -33,43 +34,29 @@ public class leet2 {
     }
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ArrayList<Integer> num1 = new ArrayList<>(), num2 = new ArrayList<>();
+        LinkedList<Integer> num1 = new LinkedList<>(), num2 = new LinkedList<>();
 
         ListNode curr = l1;
         while (curr != null) {
-            num1.add(curr.val);
+            num1.addFirst(curr.val);
             curr = curr.next;
         }
 
         curr = l2;
         while (curr != null) {
-            num2.add(curr.val);
+            num2.addFirst(curr.val);
             curr = curr.next;
         }
 
-        int size = Math.min(num1.size(), num2.size());
-        
+        LinkedList<Integer> smaller;
+        if (num1.size() < num2.size()) {
+            smaller = num1;
+        } else {
+            smaller = num2;
+        }
 
-        boolean carry = false;
-        int toAdd = num1.get(0) + num2.get(0);
-        if (toAdd > 9) {
-            toAdd %= 10;
-            carry = true;
-        }
-        ListNode result = new ListNode(toAdd);
+        ListNode result = new ListNode();
         curr = result;
-        for (int i = 1; i < size || carry; i++) {
-            toAdd = num1.get(i) + num2.get(i);
-            if (carry) {
-                toAdd += 1;
-                carry = false;
-            }
-            if (toAdd > 9) {
-                toAdd %= 10;
-                carry = true;
-            }
-            curr.next = new ListNode(toAdd);
-        }
 
         return result;
     }
