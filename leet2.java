@@ -14,7 +14,7 @@ public class leet2 {
             curr = curr.next;
         }
 
-        ListNode result = addTwoNumbers(l3, l1);
+        ListNode result = addTwoNumbers(l2, l3);
 
         System.out.println();
 
@@ -34,29 +34,48 @@ public class leet2 {
     }
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        LinkedList<Integer> num1 = new LinkedList<>(), num2 = new LinkedList<>();
+        int toAdd = l1.val + l2.val;
+        l1 = l1.next;
+        l2 = l2.next;
 
-        ListNode curr = l1;
-        while (curr != null) {
-            num1.addFirst(curr.val);
-            curr = curr.next;
+        boolean carry = false;
+        if (toAdd > 9) {
+            toAdd %= 10;
+            carry = true;
+        }
+        
+        ListNode result = new ListNode(toAdd);
+
+        ListNode currRes = result;
+
+        while (l1 != null || l2 != null) {
+            toAdd = 0;
+            if (carry) {
+                toAdd = 1;
+                carry = false;
+            }
+            if (l1 == null) {
+                toAdd += l2.val;
+                l2 = l2.next;
+            } else if (l2 == null) {
+                toAdd += l1.val;
+                l1 = l1.next;
+            } else {
+                toAdd += l1.val + l2.val;
+                l1 = l1.next;
+                l2 = l2.next;
+            }
+            if (toAdd > 9) {
+                toAdd %= 10;
+                carry = true;
+            }
+            currRes.next = new ListNode(toAdd);
+            currRes = currRes.next;
         }
 
-        curr = l2;
-        while (curr != null) {
-            num2.addFirst(curr.val);
-            curr = curr.next;
+        if (carry) {
+            currRes.next = new ListNode(1);
         }
-
-        LinkedList<Integer> smaller;
-        if (num1.size() < num2.size()) {
-            smaller = num1;
-        } else {
-            smaller = num2;
-        }
-
-        ListNode result = new ListNode();
-        curr = result;
 
         return result;
     }
