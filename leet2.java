@@ -1,7 +1,8 @@
 public class leet2 {
     public static void main(String[] args) {
-        ListNode l1 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9)))))));
-        ListNode l2 = new ListNode(9, new ListNode(9, new ListNode(9)));
+        ListNode l1 = new ListNode(1, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))))))))));
+        ListNode l2 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))));
+        ListNode l3 = new ListNode(9);
 
         int num1 = 0, exp = 0;
         ListNode curr = l1;
@@ -10,7 +11,7 @@ public class leet2 {
             curr = curr.next;
         }
 
-        ListNode result = addTwoNumbers(l1, l2);
+        ListNode result = addTwoNumbers(l3, l1);
 
         System.out.println();
 
@@ -52,18 +53,13 @@ public class leet2 {
         exp = 0;
         int total = num1 + num2;
 
-        System.out.println(total);
-
         ListNode result = new ListNode(total % 10);
         total /= 10;
         curr = result;
         while (total > 0) {
-            int val = total % 10;
-            curr.next = new ListNode(val);
-            System.out.println(total % 10);
+            curr.next = new ListNode(total % 10);
             total /= 10;
-            System.out.println(total);
-            curr = result.next;
+            curr = curr.next;
         }
 
         return result;
