@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class leet2 {
     public static void main(String[] args) {
         ListNode l1 = new ListNode(1, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))))))))));
@@ -31,35 +33,42 @@ public class leet2 {
     }
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int num1 = 0, num2 = 0, exp = 0;
+        ArrayList<Integer> num1 = new ArrayList<>(), num2 = new ArrayList<>();
 
         ListNode curr = l1;
         while (curr != null) {
-            num1 += curr.val * Math.pow(10, exp++);
+            num1.add(curr.val);
             curr = curr.next;
         }
 
-        System.out.println(num1);
-
-        exp = 0;
         curr = l2;
         while (curr != null) {
-            num2 += curr.val * Math.pow(10, exp++);
+            num2.add(curr.val);
             curr = curr.next;
         }
 
-        System.out.println(num2);
+        int size = Math.min(num1.size(), num2.size());
+        
 
-        exp = 0;
-        int total = num1 + num2;
-
-        ListNode result = new ListNode(total % 10);
-        total /= 10;
+        boolean carry = false;
+        int toAdd = num1.get(0) + num2.get(0);
+        if (toAdd > 9) {
+            toAdd %= 10;
+            carry = true;
+        }
+        ListNode result = new ListNode(toAdd);
         curr = result;
-        while (total > 0) {
-            curr.next = new ListNode(total % 10);
-            total /= 10;
-            curr = curr.next;
+        for (int i = 1; i < size || carry; i++) {
+            toAdd = num1.get(i) + num2.get(i);
+            if (carry) {
+                toAdd += 1;
+                carry = false;
+            }
+            if (toAdd > 9) {
+                toAdd %= 10;
+                carry = true;
+            }
+            curr.next = new ListNode(toAdd);
         }
 
         return result;
