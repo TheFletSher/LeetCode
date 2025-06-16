@@ -1,6 +1,6 @@
 public class leet2016 {
     public static void main(String[] args) {
-        int[] nums = {7, 1, 5, 4};
+        int[] nums = {87,68,91,86,58,63,43,98,6,40};
         System.out.println();
         System.out.println(maximumDifference(nums));
     }
@@ -10,39 +10,30 @@ public class leet2016 {
             return -1;
         }
 
+        // base result
         int result = -1;
 
-        int left = 0, right = 0;
-        // Loop through
-        while (right < nums.length - 1) {
-            // Move right as long as increasing
-            while (nums[right] < nums[right + 1]) {
-                right++;
-                if (right + 1 == nums.length) break;
-                System.out.println("MOVING: " + left + ", " + right);
-            }
-            // Update max difference
-            if (left != right) {
-                System.out.println("MAX: " + left + ", " + right);
-                if (nums[right] - nums[left] != 0) {
-                    result = Math.max(result, nums[right] - nums[left]);
-                }
-            }
-            System.out.println(result);
+        // min / max start
+        int min = nums[0], max = nums[0];
 
-            // Break point
-            if (right + 1 == nums.length) break;
-
-            // Only move left if new minimum
-            if (nums[right + 1] < nums[left]) {
-                System.out.println("MIN: " + nums[right + 1] + ", " + nums[left]);
-                left = right + 1;
-                right++;
+        // Looping through
+        for (int i = 0; i < nums.length; i++) {
+            // Bigger number becomes max
+            if (nums[i] > max) {
+                max = nums[i];
+            // If it ever decreases
             } else {
-                right++;
+                // new max found, have result
+                if (max != min) result = Math.max(result, max - min);
+                // if current number is less than old min
+                if (nums[i] < min) {
+                    min = nums[i];
+                    max = nums[i];
+                }
             }
         }
 
-        return result;
+        if (max == min) return result;
+        return Math.max(result, max - min);
     }
 }
