@@ -1,5 +1,6 @@
 public class leet10 {
     public boolean isMatch(String s, String p) {
+        // easy base cases
         if (p.equals(".*")) {
             return true;
         } else if (p.equals(".") && s.length() == 1) {
@@ -8,6 +9,10 @@ public class leet10 {
 
         int index = 0;
         for (int i = 0; i < p.length() - 1; i++) {
+            // p too long
+            if (index == s.length()) {
+                return false;
+            }
             // check for '.*'
             if (p.charAt(i) == '.' && p.charAt(i + 1) == '*') {
                 // ends with '.*'
@@ -30,17 +35,29 @@ public class leet10 {
                         }
                     }
                 }
-            // check for '.'
-            } else if (p.charAt(i) == '.') {
-                
             // check for '*'
             } else if (p.charAt(i) == '*') {
-                
-            }
-
-            if (s.charAt(i) != p.charAt(index)) {
-                return false;
-            }
+                // character to skip
+                char skip = s.charAt(index++);
+                // look through
+                for (int j = index; j < s.length(); j++) {
+                    // found different character; break
+                    if (s.charAt(j) != skip) {
+                        index = j;
+                        break;
+                    }
+                    // character runs till end
+                    if (j == s.length() - 1 && i == p.length() - 1) {
+                        return true;
+                    }
+                }
+            // check for '.'
+            } else if (p.charAt(i) == '.') {
+                index++;
+            // match characters otherwise
+            } else if (p.charAt(i) == s.charAt(index++));
         }
+
+        return (index == s.length());
     }
 }
