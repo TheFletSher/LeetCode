@@ -36,9 +36,9 @@ public class leet10 {
                     }
                 }
             // check for '*'
-            } else if (p.charAt(i) == '*') {
+            } else if (p.charAt(i + 1) == '*') {
                 // character to skip
-                char skip = s.charAt(index++);
+                char skip = p.charAt(i);
                 // look through
                 for (int j = index; j < s.length(); j++) {
                     // found different character; break
@@ -46,18 +46,19 @@ public class leet10 {
                         index = j;
                         break;
                     }
+                    System.out.println(j + ", " + i);
                     // character runs till end
-                    if (j == s.length() - 1 && i == p.length() - 1) {
+                    if (j == s.length() - 1 && i == p.length() - 2) {
                         return true;
                     }
                 }
             // check for '.'
             } else if (p.charAt(i) == '.') {
                 index++;
-            // match characters otherwise
-            } else if (p.charAt(i) == s.charAt(index++));
+            // matching characters
+            } else if (p.charAt(i) != s.charAt(index++)) return false;
         }
 
-        return (index == s.length());
+        return (index == s.length() - 1);
     }
 }
