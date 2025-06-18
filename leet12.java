@@ -1,5 +1,10 @@
 public class leet12 {
-    public String intToRoman(int num) {
+    public static void main(String[] args) {
+        int num = 3749;
+        System.out.println(intToRoman(num));
+    }
+    
+    public static String intToRoman(int num) {
         StringBuilder roman = new StringBuilder("");
 
         /*
@@ -82,6 +87,7 @@ public class leet12 {
         curr = (num / 1000);
         while (curr > 0) {
             roman.append("M");
+            curr--;
         }
 
         return roman.reverse().toString();
