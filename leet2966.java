@@ -9,7 +9,7 @@ public class leet2966 {
             result[i / 3][0] = nums[i];
             result[i / 3][1] = nums[i + 1];
             result[i / 3][2] = nums[i + 2];
-            if (i % 3 == 0 && nums[i] + k < nums[i + 2]) {
+            if (nums[i] + k < nums[i + 2]) {
                 return new int[0][0];
             }
         }
