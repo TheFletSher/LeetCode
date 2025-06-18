@@ -6,9 +6,10 @@ public class leet2966 {
         int[][] result = new int[nums.length / 3][3];
 
         for (int i = 0; i < nums.length; i+=3) {
-            result[i / 3][0] = nums[i];
-            result[i / 3][1] = nums[i + 1];
-            result[i / 3][2] = nums[i + 2];
+            int index = i / 3;
+            result[index][0] = nums[i];
+            result[index][1] = nums[i + 1];
+            result[index][2] = nums[i + 2];
             if (nums[i] + k < nums[i + 2]) {
                 return new int[0][0];
             }
