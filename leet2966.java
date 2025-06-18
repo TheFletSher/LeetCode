@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 public class leet2966 {
     public int[][] divideArray(int[] nums, int k) {
+        Arrays.sort(nums);
         int[][] result = new int[nums.length / 3][3];
 
         for (int i = 0; i < nums.length; i++) {
