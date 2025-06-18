@@ -3,8 +3,12 @@ public class leet11 {
         int left = 0, right = height.length - 1;
         int max = 0;
         while (right - left > 0) {
-            max = Math.max(max, Math.min(height[left], height[right]) * (right - left));
-            if (height[left] < height[right]) {
+            int minHeight = Math.min(height[left], height[right]);
+            int area = minHeight * (right - left);
+            if (area > max) {
+                max = area;
+            }
+            if (height[left] == minHeight) {
                 left++;
             } else {
                 right--;
