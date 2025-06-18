@@ -11,7 +11,7 @@ public class leet2966 {
             if (index == 3) index = 0;
             int current = i / 3;
             result[current][index++] = nums[i];
-            if (i % 3 != 0 && nums[i] + k < nums[i + 1]) {
+            if (i % 3 == 0 && nums[i] + k < nums[i + 2]) {
                 return new int[0][0];
             }
         }
