@@ -31,15 +31,23 @@ public class leet15 {
         if (zero >= 3) pairs.add(new ArrayList<>(List.of(0, 0, 0)));
         if (pos.isEmpty() || neg.isEmpty()) return pairs;
 
-        for (int num : neg.values()) {
-            if (pos.containsKey(-num) && zero != 0) {
-                pairs.add(new ArrayList<>(List.of(num, 0, -num)));
+        for (int negNum : neg.keySet()) {
+            System.out.println(negNum);
+            if (pos.containsKey(-negNum) && zero != 0) {
+                pairs.add(new ArrayList<>(List.of(negNum, 0, -negNum)));
             } else {
-                num = -num;
-                for (int i = 1; i < num / 2; i++) {
-                    if (pos.containsKey(i) && pos.containsKey(num - i)) {
-                        pairs.add(new ArrayList<>(List.of(num, i, num - i)));
-                        System.out.println(num + ", " + i + ", " + (num - i));
+                for (int posNum : pos.keySet()) {
+                    int need = posNum - negNum;
+                    if (neg.containsKey(need)) {
+                        if (need == negNum) {
+                            if () {
+                                
+                            }
+                        } else {
+                            pairs.add(null);
+                        }
+                    } else if (pos.containsKey(need)) {
+
                     }
                 }
             }
