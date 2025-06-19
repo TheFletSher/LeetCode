@@ -12,29 +12,35 @@ public class leet15 {
     }
 
     public static List<List<Integer>> threeSum(int[] nums) {
-        HashMap<Integer, Integer> pos = new HashMap<>(), neg = new HashMap<>(), zero = new HashMap<>();
+        HashMap<Integer, Integer> pos = new HashMap<>(), neg = new HashMap<>();
+
+        int zero = 0;
+
 
         for (int i = 0; i < nums.length; i++) {
-            if (nums[i] < 0) {
-                pos.add(nums[i]);
-            } else if (nums[i] > 0) {
-                neg.add(nums[i]);
+            if (nums[i] > 0) {
+                pos.put(nums[i], pos.getOrDefault(nums[i], 0) + 1);
+            } else if (nums[i] < 0) {
+                neg.put(nums[i], pos.getOrDefault(nums[i], 0) + 1);
             } else {
-                zero = true;
+                zero++;
             }
         }
 
         List<List<Integer>> pairs = new ArrayList<>();
 
-        for (int num : neg) {
-            if (pos.contains(-num) && zero) {
+        for (int num : neg.values()) {
+            if (pos.containsKey(-num) && zero != 0) {
                 pairs.add(new ArrayList<>(List.of(num, 0, -num)));
             } else {
-                while (num < zero) {
-                    if ()
+                num = -num;
+                for (int i = 0; i < num; i++) {
+                    
                 }
             }
         }
+
+        if (zero >= 3) pairs.add(new ArrayList<>(List.of(0, 0, 0)));
 
         return pairs;
     }
