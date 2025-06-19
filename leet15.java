@@ -40,8 +40,8 @@ public class leet15 {
                     int need = posNum - negNum;
                     if (neg.containsKey(need)) {
                         if (need == negNum) {
-                            if () {
-                                
+                            if (true) {
+                                // TODO
                             }
                         } else {
                             pairs.add(null);
