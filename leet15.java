@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 
 public class leet15 {
@@ -12,9 +12,7 @@ public class leet15 {
     }
 
     public static List<List<Integer>> threeSum(int[] nums) {
-        HashSet<Integer> pos = new HashSet<>(), neg = new HashSet<>();
-
-        boolean zero = false;
+        HashMap<Integer, Integer> pos = new HashMap<>(), neg = new HashMap<>(), zero = new HashMap<>();
 
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] < 0) {
@@ -27,6 +25,16 @@ public class leet15 {
         }
 
         List<List<Integer>> pairs = new ArrayList<>();
+
+        for (int num : neg) {
+            if (pos.contains(-num) && zero) {
+                pairs.add(new ArrayList<>(List.of(num, 0, -num)));
+            } else {
+                while (num < zero) {
+                    if ()
+                }
+            }
+        }
 
         return pairs;
     }
