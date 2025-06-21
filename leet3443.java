@@ -14,25 +14,28 @@ public class leet3443 {
             }
         }
 
-        int distance = Math.abs(e - w) + Math.abs(n - so);
+        if (k == 0) return Math.abs(e - w) + Math.abs(n - so);
 
-        if (k == 0) return distance;
-
-        if (n > so) {
-            if (k > so) {
+        // NORTH SOUTH correction
+        if (n >= so) {
+            // ALL SOUTH -> NORTH
+            if (k >= so) {
                 n += so;
                 k -= so;
                 so = 0;
+            // AS MUCH SOUTH -> NORTH AS POSSIBLE
             } else {
                 n += k;
                 so -= k;
                 k = 0;
             }
         } else {
-            if (k > n) {
-                so += k;
-                k -= so;
-                so = 0;
+            // ALL NORTH -> SOUTH
+            if (k >= n) {
+                so += n;
+                k -= n;
+                n = 0;
+            // AS MUCH NORTH -> SOUTH AS POSSIBLE
             } else {
                 so += k;
                 n -= k;
@@ -40,21 +43,28 @@ public class leet3443 {
             }
         }
 
-        if (e > w) {
-            if (k > w) {
+        if (k == 0) return Math.abs(e - w) + Math.abs(n - so);
+
+        // EAST WEST correction
+        if (e >= w) {
+            // ALL WEST -> EAST
+            if (k >= w) {
                 e += w;
                 k -= w;
                 w = 0;
+            // AS MUCH WEST -> EAST AS POSSIBLE
             } else {
                 e += k;
                 w -= k;
                 k = 0;
             }
         } else {
-            if (k > n) {
-                w += k;
+            // ALL EAST -> WEST
+            if (k >= e) {
+                w += e;
                 k -= w;
-                w = 0;
+                e = 0;
+            // AS MUCH EAST -> WEST AS POSSIBLE
             } else {
                 w += k;
                 e -= k;
@@ -62,6 +72,6 @@ public class leet3443 {
             }
         }
 
-        return distance;
+        return Math.abs(e - w) + Math.abs(n - so);
     }
 }
